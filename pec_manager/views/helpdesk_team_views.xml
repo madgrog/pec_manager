@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="helpdesk_team_view_tree_extended" model="ir.ui.view">
+        <field name="name">helpdesk.team.tree.extended</field>
+        <field name="model">helpdesk.team</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_team_view_tree" />
+        <field name="arch" type="xml">
+
+            <field name="display_alias_name" position="after">
+                <field name="alias_email_from" string="Alias Email From" widget="email" attrs="{'invisible': [('use_alias', '=', False)]}" readonly="1"/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

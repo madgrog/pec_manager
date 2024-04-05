@@ -1,0 +1,31 @@
+<odoo>
+
+    <!-- Mail Server Form View -->
+    <record model="ir.ui.view" id="view_email_server_form_extended">
+        <field name="name">Mail Server Form Extended</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="after">
+                <field name="is_pec" />
+            </field>
+
+        </field>
+    </record>
+
+    <!-- Mail Server Tree View -->
+    <record model="ir.ui.view" id="view_email_server_tree_extended">
+        <field name="name">Mail Server Tree Extended</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_tree" />
+        <field name="arch" type="xml">
+
+            <field name="name" position="after">
+                <field name="is_pec" />
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

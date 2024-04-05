@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="email_compose_message_wizard_form_extended" model="ir.ui.view">
+
+        <field name="name">mail.compose.message.form.extended</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='subtype_id']" position="after">
+                <field name="is_pec" invisible="1" />
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>
