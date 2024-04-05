@@ -387,6 +387,7 @@ class MailThread(models.AbstractModel):
             res = self.env['res.partner'].create(
                 {
                     'name': pec_address,
+                    'email': '',
                     'pec_mail': pec_address,
                     'is_company': True
                 })
