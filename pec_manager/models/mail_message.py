@@ -6,8 +6,8 @@ class Message(models.Model):
 
     pec_type = fields.Selection([
         ('posta-certificata', 'Pec Mail'),
-        ('accettazione', 'Reception'),
-        ('non-accettazione', 'No Reception'),
+        ('accettazione', 'Acceptance'),
+        ('non-accettazione', 'No Acceptance'),
         ('presa-in-carico', 'In Progress'),
         ('avvenuta-consegna', 'Delivery'),
         ('errore-consegna', 'Delivery Error'),

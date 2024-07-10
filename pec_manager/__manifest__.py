@@ -4,14 +4,13 @@
     "category": "Services/Helpdesk",
     "summary": "Manage PEC messages in Helpdesk App",
     "website": "https://github.com/madgrog",
-    "depends": ["mail", "helpdesk", "l10n_it_pec",],
+    "depends": ["mail", "helpdesk", "l10n_it_pec", "contacts"],
     "data": [
         "data/mail_template_data.xml",
         "views/fetchmail_views.xml",
         "views/helpdesk_views.xml",
         "views/helpdesk_team_views.xml",
         "views/mail_alias_views.xml",
-        "wizard/mail_compose_message_views.xml",
     ],
     'assets': {
         'mail.assets_messaging': [

@@ -38,7 +38,7 @@ class Alias(models.Model):
 
     @api.onchange('alias_domain')
     def _toggle_pec_manager(self):
-        if self.alias_domain == "futurasl.com":
+        if self.alias_domain == self._get_catchall_domain():
             alias_defaults = ast.literal_eval(self.alias_defaults)
             alias_defaults.pop("pec_manager")
         else:

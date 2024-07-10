@@ -387,7 +387,7 @@ class MailThread(models.AbstractModel):
             res = self.env['res.partner'].create(
                 {
                     'name': pec_address,
-                    'email': '',
+                    'email': '_please_manually_merge_or_complete@invalid.lan',
                     'pec_mail': pec_address,
                     'is_company': True
                 })
@@ -395,18 +395,18 @@ class MailThread(models.AbstractModel):
 
     def _notify_thread(self, message, msg_vals=False, **kwargs):
         if message.message_type == 'email' and (not message.pec_type == 'posta-certificata'):
-            # _logger.info("=================================")
-            # _logger.info("= message_type = %s", message.message_type)
-            # _logger.info("= pec_type = %s", message.pec_type)
-            # _logger.info("= DO NOT NOTIFY OR SEND EMAIL")
-            # _logger.info("=================================")
+            _logger.info("=================================")
+            _logger.info("= message_type = %s", message.message_type)
+            _logger.info("= pec_type = %s", message.pec_type)
+            _logger.info("= DO NOT NOTIFY OR SEND EMAIL")
+            _logger.info("=================================")
             return False
         else:
-            # _logger.info("=================================")
-            # _logger.info("= message_type = %s", message.message_type)
-            # _logger.info("= pec_type = %s", message.pec_type)
-            # _logger.info("= NOTIFY OR SEND EMAIL!")
-            # _logger.info("=================================")
+            _logger.info("=================================")
+            _logger.info("= message_type = %s", message.message_type)
+            _logger.info("= pec_type = %s", message.pec_type)
+            _logger.info("= NOTIFY OR SEND EMAIL!")
+            _logger.info("=================================")
             return super(MailThread, self)._notify_thread(message, msg_vals=msg_vals, **kwargs)
 
     @api.model
@@ -449,10 +449,6 @@ class MailThread(models.AbstractModel):
         if not self.is_server_pec():
             return super(MailThread, self).message_route(message, message_dict, model=model, thread_id=thread_id, custom_values=custom_values)
 
-        _logger.info("=========================")
-        _logger.info("we are in custom message_route")
-        _logger.info("=========================")
-
         if not isinstance(message, EmailMessage):
             raise TypeError('message must be an email.message.EmailMessage at this point')
         catchall_alias = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.alias")
@@ -463,7 +459,7 @@ class MailThread(models.AbstractModel):
         message_id = message_dict['message_id']
 
         # compute references to find if message is a reply to an existing thread
-        _logger.info("=========================")
+        _logger.info("==== MESSAGE_ROUTE() ====")
         _logger.info("pec_type: %s", message_dict['pec_type'])
         _logger.info("references: %s", message_dict['references'])
         _logger.info("in_reply_to: %s", message_dict['in_reply_to'])
@@ -607,6 +603,8 @@ class MailThread(models.AbstractModel):
 
     @api.model
     def _mail_find_partner_from_emails(self, emails, records=None, force_create=False, extra_domain=False):
+
+        """ SHOULD BE REANALYZED AND FIXED! """
 
         _logger.info("=== _MAIL_FIND_PARTNER_INFO_FROM_EMAILS() ===")
         _logger.info(self._name)

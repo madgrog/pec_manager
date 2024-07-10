@@ -35,10 +35,7 @@ class HelpdeskTicket(models.Model):
 
     @api.model_create_multi
     def create(self, list_value):
-        _logger.info('=== log list_value ===')
         list_value[0]["original_team_id"] = list_value[0]["team_id"]
-        _logger.info(list_value)
-        _logger.info('======================')
         return super(HelpdeskTicket, self).create(list_value)
     
     def _get_partner_email_update(self):

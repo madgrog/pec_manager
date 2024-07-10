@@ -12,7 +12,7 @@ class MailMail(models.Model):
     is_pec = fields.Boolean('Is Pec?', help='If set, the mail is sent to partner.pec_mail instead of partner.email.')
 
     def _send_prepare_values(self, partner=None):
-        _logger.info("==== CUSTOM _SEND_PREPARE_DATA() ====")
+        _logger.info('==== CUSTOM _SEND_PREPARE_DATA() ====')
         if not self.is_pec:
             _logger.info("==== _SEND_PREPARE_VALUE() NOT PEC ====")
             _logger.info("self: %s", self)
