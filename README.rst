@@ -5,10 +5,12 @@ PEC Manager - ODOO Helpdesk Add-on
 **Italiano**
 
 Estende le funzionalità dell'App Enterprise Helpdesk per gestire la Posta Certificata (PEC).
+Modulo ancora in fase di sviluppo.
 
 **English**
 
 Extends Enterprise Helpdesk App to manage italian Certified Email Services (PEC).
+Module still in development stage.
 
 **Table of contents**
 
