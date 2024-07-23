@@ -9,7 +9,7 @@ class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     pec_manager = fields.Boolean("Enable PEC management?", default=False)
-    original_team_id = fields.Many2one('helpdesk.team', string='Original Team', index=True, tracking=True)
+    original_team_id = fields.Many2one('helpdesk.team', string='Original Team id', index=True, tracking=True)
 
     @api.depends('partner_id.pec_mail')
     def _compute_partner_email(self):

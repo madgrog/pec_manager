@@ -5,8 +5,8 @@
         <record id="ticket_reply_as_pec_email_template" model="mail.template">
             <field name="name">Helpdesk: Reply as PEC</field>
             <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
-            <field name="subject">{{ object.display_name }}</field>
-            <field name="email_from">{{ object.original_team_id.alias_name }}@{{ object.original_team_id.alias_domain }}</field>
+            <field name="subject">Re: {{ object.display_name }}</field>
+            <field name="email_from">{{ object.sudo().original_team_id.alias_name }}@{{ object.sudo().original_team_id.alias_domain }}</field>
             <field name="email_to">{{ (object.partner_email if not object.sudo().partner_id.pec_mail or object.sudo().partner_id.pec_mail != object.partner_email else '') }}</field>
             <field name="partner_to">{{ object.partner_id.id if object.sudo().partner_id.pec_mail and object.sudo().partner_id.pec_mail == object.partner_email else '' }}</field>
             <field name="reply_to">{{ object.original_team_id.alias_name }}@{{ object.original_team_id.alias_domain }}</field>

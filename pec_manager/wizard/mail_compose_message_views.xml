@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='subtype_id']" position="after">
-                <field name="is_pec" invisible="1" />
+            <xpath expr="//field[@name='template_id']" position="after">
+                <field name="is_pec" string="Is PEC?" attrs="{'invisible': [('is_log', '=', True)]}" />
             </xpath>
 
         </field>

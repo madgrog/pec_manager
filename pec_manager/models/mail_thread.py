@@ -409,6 +409,15 @@ class MailThread(models.AbstractModel):
             _logger.info("=================================")
             return super(MailThread, self)._notify_thread(message, msg_vals=msg_vals, **kwargs)
 
+    def _notify_get_recipients_groups(self, msg_vals=None):
+        """ Remove "button access" from replies when PEC Manager is enabled. """
+        groups = super(MailThread, self)._notify_get_recipients_groups(msg_vals=msg_vals)
+        if self.pec_manager:
+            portal_group = next(group for group in groups if group[0] == 'portal_customer')
+            portal_group[2]['active'] = True
+            portal_group[2]['has_button_access'] = False
+        return groups
+
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
         """ Attempt to figure out the correct target model, thread_id,

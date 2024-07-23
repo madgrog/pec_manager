@@ -4,6 +4,7 @@
     "category": "Services/Helpdesk",
     "summary": "Manage PEC messages in Helpdesk App",
     "website": "https://github.com/madgrog",
+    # optional dependance: "mail_debrand" from OCA/social
     "depends": ["mail", "helpdesk", "l10n_it_pec", "contacts"],
     "data": [
         "data/mail_template_data.xml",
@@ -11,10 +12,11 @@
         "views/helpdesk_views.xml",
         "views/helpdesk_team_views.xml",
         "views/mail_alias_views.xml",
+        # "wizard/mail_compose_message_views.xml",
     ],
-    'assets': {
-        'mail.assets_messaging': [
-            'mail/static/src/models/*.js',
+    "assets": {
+        "web.assets_backend": [
+            "pec_manager/static/src/js/**/*.js",
         ],
     },
     "application": True,
