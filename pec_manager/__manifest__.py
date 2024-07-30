@@ -1,12 +1,14 @@
 {
     "name": "PEC Manager (in Helpdesk)",
-    "version": "0.60",
+    "version": "0.70",
     "category": "Services/Helpdesk",
     "summary": "Manage PEC messages in Helpdesk App",
     "website": "https://github.com/madgrog/pec_manager",
     # optional dependance: "mail_debrand" from OCA/social
-    "depends": ["mail", "helpdesk", "l10n_it_pec", "contacts"],
+    "depends": ["mail", "helpdesk", "l10n_it_pec", "contacts", "hr"],
     "data": [
+        'security/pec_manager_security.xml',
+        'security/ir.model.access.csv',
         "data/mail_template_data.xml",
         "views/fetchmail_views.xml",
         "views/helpdesk_views.xml",

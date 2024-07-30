@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_tag,helpdesk.tag,helpdesk.model_helpdesk_tag,pec_manager.group_helpdesk_pec_manager,1,1,1,1
+access_helpdesk_sla,helpdesk.sla,helpdesk.model_helpdesk_sla,pec_manager.group_helpdesk_pec_manager,1,0,0,0
+access_helpdesk_sla_status,helpdesk.sla.status,helpdesk.model_helpdesk_sla_status,pec_manager.group_helpdesk_pec_manager,1,0,0,0
+access_helpdesk_stage,helpdesk.stage,helpdesk.model_helpdesk_stage,pec_manager.group_helpdesk_pec_manager,1,0,0,0
+access_helpdesk_ticket,helpdesk.ticket,model_helpdesk_ticket,pec_manager.group_helpdesk_pec_manager,1,1,1,1
+access_helpdesk_ticket_type_user,helpdesk.ticket.type.user,helpdesk.model_helpdesk_ticket_type,pec_manager.group_helpdesk_pec_manager,1,0,0,0
+access_helpdesk_sla_report_analysis_user,access_helpdesk_sla_report_analysis_user,helpdesk.model_helpdesk_sla_report_analysis,pec_manager.group_helpdesk_pec_manager,1,0,0,0
+access_helpdesk_ticket_report_analysis_user,helpdesk.ticket.report.analysis.user,helpdesk.model_helpdesk_ticket_report_analysis,pec_manager.group_helpdesk_pec_manager,1,0,0,0

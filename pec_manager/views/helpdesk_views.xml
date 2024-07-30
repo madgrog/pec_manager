@@ -1,7 +1,6 @@
 <odoo>
 
     <record model="ir.ui.menu" id="helpdesk.menu_helpdesk_root">
-        <field name="name">Helpdesk &amp; PEC</field>
         <field name="web_icon">pec_manager,static/description/menu_icon.png</field>
     </record>
 
