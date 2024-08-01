@@ -24,4 +24,5 @@
     "application": True,
     "license": "AGPL-3",
     "author": "Luigi Lamorte",
+    "uninstall_hook": "_restore_helpdesk"
 }
