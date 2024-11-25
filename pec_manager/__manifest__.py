@@ -4,7 +4,7 @@
     "category": "Services/Helpdesk",
     "summary": "Manage PEC messages in Helpdesk App",
     "website": "https://github.com/madgrog/pec_manager",
-    # optional dependance: "mail_debrand" from OCA/social
+    # optional dependency: "mail_debrand" from OCA/social
     "depends": ["mail", "helpdesk", "l10n_it_pec", "contacts", "hr"],
     "data": [
         'security/pec_manager_security.xml',

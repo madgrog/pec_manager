@@ -412,7 +412,7 @@ class MailThread(models.AbstractModel):
     def _notify_get_recipients_groups(self, msg_vals=None):
         """ Remove "button access" from replies when PEC Manager is enabled. """
         groups = super(MailThread, self)._notify_get_recipients_groups(msg_vals=msg_vals)
-        if self.pec_manager:
+        if msg_vals['model'] == 'helpdesk.ticket' and self.pec_manager:
             portal_group = next(group for group in groups if group[0] == 'portal_customer')
             portal_group[2]['active'] = True
             portal_group[2]['has_button_access'] = False

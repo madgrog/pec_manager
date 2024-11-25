@@ -76,9 +76,9 @@ class HelpdeskTeam(models.Model):
                 team.mapped('ticket_ids')._unsubscribe_portal_users()
 
     def _notify_get_reply_to(self, default=None):
-        
-        # Overriding default function to support custom alias_domains
-
+        """
+        Overriding default function to support custom alias_domains
+        """
         _records = self
         model = _records._name if _records and _records._name != 'mail.thread' else False
         res_ids = _records.ids if _records and model else []
