@@ -20,7 +20,7 @@ class MailComposer(models.TransientModel):
             sender and PEC SMTP server (if recipient has a PEC email defined).
         """
         res = super(MailComposer, self).default_get(fields)
-        if res['model'] == "helpdesk.ticket":
+        if "model" in res and res['model'] == "helpdesk.ticket":
             res['is_pec']: bool = self.env[self._context.get("default_model")].sudo().search(
                 [('id', '=', self._context.get("default_res_id"))]).pec_manager
             if res['is_pec']:

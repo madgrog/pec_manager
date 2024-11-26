@@ -6,7 +6,7 @@ import re
 
 from email.message import EmailMessage
 
-from odoo import _, api, models, tools
+from odoo import _, api, models, tools, fields
 
 import xml.etree.ElementTree as ET
 
@@ -15,6 +15,29 @@ _logger = logging.getLogger(__name__)
 
 class MailThread(models.AbstractModel):
     _inherit = 'mail.thread'
+
+    is_discussed = fields.Boolean(compute="_compute_is_discussed", search="_search_is_discussed", store=False)
+
+    def _compute_is_discussed(self):
+        _logger.info("=== _compute_is_discussed() ===")
+        self.env['mail.message'].flush_model()
+        self.env.cr.execute("""
+            SELECT distinct res_id
+              FROM mail_message mm
+             WHERE res_id = any(%s)
+               AND mm.model=%s
+               AND mm.subtype_id=1
+        """, [self.ids, self._name])
+        channel_ids = [r[0] for r in self.env.cr.fetchall()]
+        for record in self:
+            record.is_discussed = record.id in channel_ids
+
+    def _search_is_discussed(self, operator, value):
+        if (operator == '=' and value is True) or (operator == '!=' and value is False):
+            operator_new = 'inselect'
+        else:
+            operator_new = 'not inselect'
+        return [('id', operator_new, ("SELECT res_id FROM mail_message WHERE model=%s AND subtype_id=1", [self._name]))]
 
     def is_server_pec(self):
         if 'default_fetchmail_server_id' in self._context:
@@ -659,3 +682,27 @@ class MailThread(models.AbstractModel):
                     partner = self.env['res.partner'].browse(self.env['res.partner'].name_create(contact)[0])
                 partners.append(partner)
             return partners
+
+    @api.returns('mail.message', lambda value: value.id)
+    def message_post(self, *,
+                     body='', subject=None, message_type='notification',
+                     email_from=None, author_id=None, parent_id=False,
+                     subtype_xmlid=None, subtype_id=False, partner_ids=None,
+                     attachments=None, attachment_ids=None,
+                     **kwargs):
+        _logger.info("=== custom message_post() ===")
+        self._message_post_before_hook()
+        return super(MailThread, self).message_post(body=body, subject=subject, message_type=message_type,
+                                                    email_from=email_from, author_id=author_id, parent_id=parent_id,
+                                                    subtype_xmlid=subtype_xmlid, subtype_id=subtype_id,
+                                                    partner_ids=partner_ids, attachments=attachments,
+                                                    attachment_ids=attachment_ids, **kwargs)
+    def _message_post_before_hook(self):
+        _logger.info("=== _message_post_before_hook() ===")
+        _logger.info(self._name)
+        if self._name == 'helpdesk.ticket':
+            _logger.info(self.env.uid)
+            _logger.info(self.is_discussed)
+            _logger.info(self.user_id)
+            if not self.is_discussed:
+                self.user_id = self.env.uid

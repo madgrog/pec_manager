@@ -13,16 +13,10 @@ class MailMail(models.Model):
 
     def _send_prepare_values(self, partner=None):
         if self.model == "helpdesk.ticket":
-            _logger.info("Ticket ID: %s", self.res_id)
-            ticket_id = self.res_id
             self.is_pec: bool = self.env['helpdesk.ticket'].search([('id', '=', self.res_id)]).pec_manager
-            _logger.info("Ticket IS_PEC: %s", self.is_pec)
-        # self.is_pec: bool = self.env[self._context.get("default_model")].sudo().search([('id', '=', self._context.get("default_res_id"))]).pec_manager
         if not self.is_pec:
-            _logger.info("=== not a pec ===")
             return super(MailMail, self)._send_prepare_values(partner=partner)
         else:
-            _logger.info("=== reply with pec ===")
             self.ensure_one()
             body = self._send_prepare_body()
             body_alternative = tools.html2plaintext(body)

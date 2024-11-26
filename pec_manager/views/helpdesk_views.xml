@@ -26,8 +26,11 @@
                 <div class="o_row o_row_readonly">
                     <field name="pec_manager"/>
                 </div>
+                <label for="is_discussed" string="Is discussed?"/>
+                <div class="o_row o_row_readonly">
+                    <field name="is_discussed"/>
+                </div>
             </label>
-
         </field>
     </record>
 
