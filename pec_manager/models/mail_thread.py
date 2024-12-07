@@ -697,6 +697,7 @@ class MailThread(models.AbstractModel):
                                                     subtype_xmlid=subtype_xmlid, subtype_id=subtype_id,
                                                     partner_ids=partner_ids, attachments=attachments,
                                                     attachment_ids=attachment_ids, **kwargs)
+    
     def _message_post_before_hook(self):
         _logger.info("=== _message_post_before_hook() ===")
         _logger.info(self._name)

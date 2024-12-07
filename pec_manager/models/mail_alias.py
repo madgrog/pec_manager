@@ -48,7 +48,7 @@ class Alias(models.Model):
     def _toggle_pec_manager(self):
         if self.alias_domain == self._get_catchall_domain():
             alias_defaults = ast.literal_eval(self.alias_defaults)
-            if bool(alias_defaults) or alias_defaults["pec_manager"] == True:
+            if bool(alias_defaults) or ("pec_manager" in alias_defaults and alias_defaults["pec_manager"]) == True:
                 alias_defaults.pop("pec_manager")
         else:
             alias_defaults = ast.literal_eval(self.alias_defaults)
