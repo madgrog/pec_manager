@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pec_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-02 11:46+0000\n"
+"PO-Revision-Date: 2024-08-02 14:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: pec_manager
+#: model:mail.template,body_html:pec_manager.ticket_reply_as_pec_email_template
+msgid ""
+"<div>\n"
+"                    Dear <t t-out=\"object.sudo().partner_id.name or 'Madam/Sir'\">Madam/Sir</t>,<br><br>\n"
+"                    ... WRITE YOUR REPLY HERE<br><br>\n"
+"                    Thank you for your cooperation.<br>\n"
+"                    Kind regards,<br><br>\n"
+"                    <t t-out=\"object.team_id.name or 'Helpdesk'\">Helpdesk</t> Team.\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__accettazione
+msgid "Acceptance"
+msgstr "Accettazione"
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_team__alias_domain model:ir.model.fields,field_description:pec_manager.field_mail_alias__alias_domain
+msgid "Alias Domain"
+msgstr "Dominio alias"
+
+#. module: pec_manager
+#: model_terms:ir.ui.view,arch_db:pec_manager.helpdesk_team_view_tree_extended
+msgid "Alias Email From"
+msgstr "Alias email del mittente"
+
+#. module: pec_manager
+#: model_terms:ir.ui.view,arch_db:pec_manager.helpdesk_tickets_view_search_extended
+msgid "Chatter"
+msgstr "Chatter"
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/helpdesk.py:0
+#, python-format
+msgid "Customers will be added to the followers of their tickets."
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__avvenuta-consegna
+msgid "Delivery"
+msgstr "Consegna"
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__errore-consegna
+msgid "Delivery Error"
+msgstr "Errore di consegna"
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_team__department_id model_terms:ir.ui.view,arch_db:pec_manager.helpdesk_team_view_form_extended
+msgid "Department"
+msgstr "Dipartimento"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_mail_alias
+msgid "Email Aliases"
+msgstr "Alias e-mail"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussione e-mail"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Procedura composizione e-mail"
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_ticket__pec_manager
+msgid "Enable PEC management?"
+msgstr "Abilita la gestione PEC?"
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/helpdesk.py:0
+#, python-format
+msgid "Grant portal users access to your helpdesk team or tickets by adding them as followers."
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_team__group_id
+msgid "Group"
+msgstr "Gruppo"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_helpdesk_team
+msgid "Helpdesk Team"
+msgstr "Team assistenza clienti"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr "Ticket assistenza clienti"
+
+#. module: pec_manager
+#: model:mail.template,name:pec_manager.ticket_reply_as_pec_email_template
+msgid "Helpdesk: Reply as PEC"
+msgstr "Assistenza clienti: rispondi come PEC"
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_mail_mail__is_pec
+msgid "If set, the mail is sent to partner.pec_mail instead of partner.email."
+msgstr "Se impostato, la email è inviata a partner.pec_mail invece che a partner.email."
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_mail_compose_message__is_pec
+msgid "If set, the reply wizard can send PEC messages instead of standard emails."
+msgstr "Se impostato, il wizard di composizione della risposta può inviare messaggi PEC invece che email standard."
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__presa-in-carico
+msgid "In Progress"
+msgstr "In lavorazione"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Server posta in arrivo"
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__helpdesk_team__privacy_visibility__group
+msgid "Invited portal users and internal users members of selected user group"
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_fetchmail_server__is_pec
+msgid "Is PEC?"
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_mail_compose_message__is_pec model:ir.model.fields,field_description:pec_manager.field_mail_mail__is_pec
+msgid "Is Pec?"
+msgstr ""
+
+#. module: pec_manager
+#: model_terms:ir.ui.view,arch_db:pec_manager.helpdesk_ticket_view_form_extended
+msgid "Manage as PEC"
+msgstr "Gestisci come PEC"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_mail_message
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_mail_mail__pec_msg_id model:ir.model.fields,help:pec_manager.field_mail_message__pec_msg_id
+msgid "Message unique identifier"
+msgstr "Identificatore unico del messaggio"
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__non-accettazione
+msgid "No Acceptance"
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__preavviso-errore-consegna
+msgid "Notice Delivery Error"
+msgstr ""
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_ticket__original_team_id
+msgid "Original Team id"
+msgstr "Team ID originario"
+
+#. module: pec_manager
+#: model:ir.model,name:pec_manager.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Posta in uscita"
+
+#. module: pec_manager
+#: model:res.groups,name:pec_manager.group_helpdesk_pec_manager
+msgid "PEC Manager"
+msgstr "PEC Manager"
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_mail_mail__pec_type model:ir.model.fields,field_description:pec_manager.field_mail_message__pec_type
+msgid "PEC Type"
+msgstr "Tipo PEC"
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/mail_thread.py:0
+#, python-format
+msgid "PEC message does not contain daticert.xml"
+msgstr "Il messaggio PEC non contiene il file daticert.xml"
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/mail_thread.py:0
+#, python-format
+msgid "PEC message does not contain postacert.eml"
+msgstr "Il messaggio PEC non contiene il file postacert.eml"
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_mail_mail__pec_msg_id model:ir.model.fields,field_description:pec_manager.field_mail_message__pec_msg_id
+msgid "PEC-Message-Id"
+msgstr "PEC-Message-Id"
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__posta-certificata
+msgid "Pec Mail"
+msgstr "Pec Mail"
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_helpdesk_team__privacy_visibility
+msgid ""
+"People to whom this helpdesk team and its tickets will be visible.\n"
+"\n"
+"- Invited internal users: internal users can access the team and the tickets they are following. This access can be modified on each ticket individually by adding or removing the user as follower.\n"
+"A user with the helpdesk > administrator access right level can still access this team and its tickets, even if they are not explicitely part of the followers.\n"
+"\n"
+"- All internal users: all internal users can access the team and all of its tickets without distinction.\n"
+"\n"
+"- Invited portal users and all internal users: all internal users can access the team and all of its tickets without distinction.\n"
+"Portal users can only access the tickets they are following. This access can be modified on each ticket individually by adding or removing the portal user as follower.... add description for group selection ..."
+msgstr ""
+"Persone per le quali sarà visibile il team di assistenza e i relativi ticket.\n"
+"\n"
+"-Utenti interni invitati: gli utenti interni posso accedere al team e ai ticket che stanno seguendo. L'accesso può essere modificato singolarmente per ciascun ticket, aggiungendo o rimuovendo l'utente da chi "
+"sta seguendo.\n"
+"Un utente con diritti di accesso Assistenza clienti → Amministratore può tuttavia accedere al team e ai ticket corrispondenti anche se non fa esplicitamente parte di chi sta seguendo.\n"
+"\n"
+"- Tutti gli utenti interni: tutti gli utenti interni possono accedere al team e a tutti i ticket corrispondenti senza distinzione.\n"
+"\n"
+"- Utenti portale invitati e tutti gli utenti interni: tutti gli utenti interni possono accedere al team e a tutti i ticket corrispondenti senza distinzione.\n"
+"Gli utenti del portale possono accedere solo ai ticket che stanno seguendo. L'accesso può essere modificato singolarmente su ciascun ticket, aggiungendo o rimuovendo l'utente da chi sta seguendo."
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/helpdesk.py:0
+#, python-format
+msgid "Portal users will be removed from the followers of the team and its tickets."
+msgstr ""
+
+#. module: pec_manager
+#: model:mail.template,subject:pec_manager.ticket_reply_as_pec_email_template
+msgid "Re: {{ object.display_name }}"
+msgstr "Re: {{ object.display_name }}"
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_helpdesk_team__alias_domain model:ir.model.fields,help:pec_manager.field_mail_alias__alias_domain
+msgid "Select mail domain"
+msgstr "Seleziona il dominio mail"
+
+#. module: pec_manager
+#: model:mail.template,description:pec_manager.ticket_reply_as_pec_email_template
+msgid "Set this template on a ticket reply to send it as PEC"
+msgstr "Imposta questo template alla risposta di un ticket per inviarla come email PEC"
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_helpdesk_team__department_id
+msgid "The Department of the Team."
+msgstr "Il dipartimento del Team."
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/mail_alias.py:0
+#, python-format
+msgid "The e-mail alias %(matching_alias_name)s is already used as %(alias_duplicate)s alias. Please choose another alias."
+msgstr ""
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/helpdesk.py:0
+#, python-format
+msgid "The visibility of the team needs to be set as one of two \"Invited portal users...\" options in order to use the website form."
+msgstr ""
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/mail_thread.py:0
+#, python-format
+msgid "Too many existing mails with message_id %s"
+msgstr "Troppi messaggi esistenti con message_id %s"
+
+#. module: pec_manager
+#: model:ir.model.constraint,message:pec_manager.constraint_mail_alias_alias_unique
+msgid "Unfortunately this email alias is already used, please choose a unique one"
+msgstr "Sfortunatamente questo alias email è già in uso, per favore scegline uno unico"
+
+#. module: pec_manager
+#: model_terms:ir.ui.view,arch_db:pec_manager.helpdesk_team_view_form_extended
+msgid "User Group"
+msgstr "Gruppo Utente"
+
+#. module: pec_manager
+#: model:ir.model.fields,help:pec_manager.field_helpdesk_team__group_id
+msgid "User group that can access this Team."
+msgstr "Il gruppo utente che può accedere a questo Team."
+
+#. module: pec_manager
+#: model:ir.model.fields.selection,name:pec_manager.selection__mail_message__pec_type__rilevazione-virus
+msgid "Virus Detected"
+msgstr "Virus Rilevato"
+
+#. module: pec_manager
+#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_team__privacy_visibility
+msgid "Visibility"
+msgstr "Visibilità"
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/mail_alias.py:0
+#, python-format
+msgid "bounce"
+msgstr "buone"
+
+#. module: pec_manager
+#. odoo-python
+#: code:addons/pec_manager/models/mail_alias.py:0
+#, python-format
+msgid "catchall"
+msgstr "catchall"

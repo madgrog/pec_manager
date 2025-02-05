@@ -1,0 +1,37 @@
+<odoo>
+
+    <record model="ir.ui.menu" id="helpdesk.menu_helpdesk_root">
+        <field name="web_icon">pec_manager,static/description/menu_icon.png</field>
+    </record>
+
+    <record id="helpdesk_tickets_view_search_extended" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.search.extended</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="description" />
+                <field name="message_ids" string="Chatter" filter_domain="[('message_ids.body','ilike',self)]"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="helpdesk_ticket_view_form_extended" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.extended</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+        <field name="arch" type="xml">
+            <label for="partner_phone" position="before">
+                <label for="pec_manager" string="Manage as PEC"/>
+                <div class="o_row o_row_readonly">
+                    <field name="pec_manager"/>
+                </div>
+                <label for="is_discussed" string="Is discussed?"/>
+                <div class="o_row o_row_readonly">
+                    <field name="is_discussed"/>
+                </div>
+            </label>
+        </field>
+    </record>
+
+</odoo>
