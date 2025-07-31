@@ -1,6 +1,6 @@
 {
     "name": "PEC Manager (in Helpdesk)",
-    "version": "0.80",
+    "version": "1.0",
     "category": "Services/Helpdesk",
     "summary": "Manage PEC messages in Helpdesk App",
     "website": "https://github.com/madgrog/pec_manager",
