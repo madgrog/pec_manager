@@ -16,5 +16,5 @@ class Message(models.Model):
         'PEC Type', readonly=True,
         help="",)
     pec_msg_id = fields.Char(
-        'PEC-Message-Id',
+        'PEC Message-Id',
         help='Message unique identifier', readonly=True)

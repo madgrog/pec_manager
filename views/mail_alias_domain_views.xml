@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="mail_alias_domain_view_form_extended" model="ir.ui.view">
+        <field name="name">mail.alias.domain.view.form.extended</field>
+        <field name="model">mail.alias.domain</field>
+        <field name="inherit_id" ref="mail.mail_alias_domain_view_form" />
+        <field name="arch" type="xml">
+             <field name="company_ids" position="after">
+                 <field name="is_pec" string="Is PEC?" />
+             </field>
+        </field>
+    </record>
+
+    <record id="mail_alias_domain_view_tree_extended" model="ir.ui.view">
+        <field name="name">mail.alias.domain.view.tree.extended</field>
+        <field name="model">mail.alias.domain</field>
+        <field name="inherit_id" ref="mail.mail_alias_domain_view_tree" />
+        <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="is_pec" string="Is PEC?" />
+                </field>
+        </field>
+    </record>
+
+</odoo>
