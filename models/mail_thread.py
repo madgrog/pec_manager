@@ -338,21 +338,21 @@ class MailThread(models.AbstractModel):
                 res = partner_obj[0]
         return res
 
-    def _notify_thread(self, message, msg_vals=False, **kwargs):
-        if message.message_type == 'email' and (not message.pec_type == 'posta-certificata'):
-            _logger.info("=================================")
-            _logger.info("= message_type = %s", message.message_type)
-            _logger.info("= pec_type = %s", message.pec_type)
-            _logger.info("= DO NOT NOTIFY OR SEND EMAIL")
-            _logger.info("=================================")
-            return False
-        else:
-            _logger.info("=================================")
-            _logger.info("= message_type = %s", message.message_type)
-            _logger.info("= pec_type = %s", message.pec_type)
-            _logger.info("= NOTIFY OR SEND EMAIL!")
-            _logger.info("=================================")
-            return super(MailThread, self)._notify_thread(message, msg_vals=msg_vals, notify_author=False, **kwargs)
+    # def _notify_thread(self, message, msg_vals=False, **kwargs):
+    #     if message.message_type == 'email' and (not message.pec_type == 'posta-certificata'):
+    #         _logger.info("=================================")
+    #         _logger.info("= message_type = %s", message.message_type)
+    #         _logger.info("= pec_type = %s", message.pec_type)
+    #         _logger.info("= DO NOT NOTIFY OR SEND EMAIL")
+    #         _logger.info("=================================")
+    #         return False
+    #     else:
+    #         _logger.info("=================================")
+    #         _logger.info("= message_type = %s", message.message_type)
+    #         _logger.info("= pec_type = %s", message.pec_type)
+    #         _logger.info("= NOTIFY OR SEND EMAIL!")
+    #         _logger.info("=================================")
+    #         return super(MailThread, self)._notify_thread(message, msg_vals=msg_vals, notify_author=False, **kwargs)
 
     def _notify_get_recipients_groups(self, message, model_description, msg_vals=None):
         """
