@@ -7,8 +7,8 @@
     # optional dependency: "mail_debrand" from OCA/social
     "depends": ["mail", "helpdesk", "base_automation", "contacts", "hr"],
     "data": [
-        'security/pec_manager_security.xml',
-        'security/ir.model.access.csv',
+        # 'security/pec_manager_security.xml',
+        # 'security/ir.model.access.csv',
         "data/mail_template_data.xml",
         "data/mail_message_subtype_data.xml",
         "views/fetchmail_views.xml",
