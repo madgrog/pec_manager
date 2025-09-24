@@ -15,3 +15,9 @@ class HelpdeskTicket(models.Model):
     def create(self, list_value):
         list_value[0]["original_team_id"] = list_value[0]["team_id"]
         return super(HelpdeskTicket, self).create(list_value)
+
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if 'team_id' in init_values:
+            return self.env.ref('pec_manager.mt_ticket_team')
+        return super(HelpdeskTicket, self)._track_subtype(init_values)

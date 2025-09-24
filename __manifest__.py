@@ -10,6 +10,7 @@
         'security/pec_manager_security.xml',
         'security/ir.model.access.csv',
         "data/mail_template_data.xml",
+        "data/mail_message_subtype_data.xml",
         "views/fetchmail_views.xml",
         "views/helpdesk_menu_icon_updated.xml",
         "views/mail_alias_domain_views.xml",

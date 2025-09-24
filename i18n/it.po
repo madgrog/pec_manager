@@ -333,3 +333,9 @@ msgstr "buone"
 #, python-format
 msgid "catchall"
 msgstr "catchall"
+
+#. module: pec_manager
+#: model:mail.message.subtype,description:pec_manager.mt_ticket_team
+#: model:mail.message.subtype,name:pec_manager.mt_ticket_team
+msgid "Team Changed"
+msgstr "Gruppo cambiato"

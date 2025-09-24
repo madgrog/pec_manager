@@ -320,9 +320,8 @@ class MailThread(models.AbstractModel):
             Trying to fix some PDF attachments received with wrong Content-Type (*/*)
         """
         for part in message.walk():
-            if part.get_content_type() == '*/*'and part.get_filename().endswith('.pdf'):
+            if part.get_content_type() == '*/*' and part.get_filename().endswith('.pdf'):
                 part.replace_header('Content-Type', 'application/pdf')
-            _logger.info("Part content: %s", part.get('Content-Type', ''))
         return super(MailThread, self)._message_parse_extract_payload(message, message_dict, save_original=save_original)
 
     def _FindPartnersPec(self, message=None, email_from=False):
