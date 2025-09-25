@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_self_pec_ticket_unsubscribe" model="ir.actions.server">
+        <field name="name">PEC Manager: Self unsubscribe from ticket</field>
+        <field name="model_id" ref="model_helpdesk_ticket"/>
+        <field name="state">code</field>
+        <field name="code">
+            record.message_unsubscribe(partner_ids=[env.user.partner_id.id])
+        </field>
+        <field name="usage">base_automation</field>
+<!--        <field name="base_automation_id" ref="self_pec_ticket_unsubscribe"/>-->
+    </record>
+
+    <record id="self_pec_ticket_unsubscribe" model="base.automation">
+        <field name="name">Unsubscribe PEC Manager from assigned ticket</field>
+        <field name="model_id" ref="model_helpdesk_ticket" />
+        <field name="trigger">on_create_or_write</field>
+        <field name="trigger_field_ids" eval="[(4, ref('helpdesk.field_helpdesk_ticket__team_id'))]" />
+        <field name="action_server_ids">action_self_pec_ticket_unsubscribe</field>
+    </record>
+
+    <record id="action_self_pec_ticket_unsubscribe" model="ir.actions.server">
+        <field name="base_automation_id" ref="self_pec_ticket_unsubscribe"/>
+    </record>
+
+</odoo>

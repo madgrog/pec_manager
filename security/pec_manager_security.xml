@@ -3,8 +3,34 @@
 
     <record id="group_helpdesk_pec_manager" model="res.groups">
         <field name="name">PEC Manager</field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+<!--        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>-->
         <field name="category_id" ref="base.module_category_services_helpdesk"/>
+    </record>
+
+    <record id="helpdesk_pec_manager_rule" model="ir.rule">
+        <field name="name">Helpdesk PEC Manager</field>
+        <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
+        <field name="domain_force">['|',
+                                            ("alias_domain_id.is_pec", "=", True),
+                                            ('use_alias', '=', False)
+                                        ]</field>
+<!--        <field name="domain_force">[(1,'=',1)]</field>-->
+        <field name="groups" eval="[(4, ref('group_helpdesk_pec_manager'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="helpdesk_ticket_pec_manager_rule" model="ir.rule">
+        <field name="name">Helpdesk Ticket PEC Manager</field>
+        <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('group_helpdesk_pec_manager'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
     </record>
 
 </odoo>
