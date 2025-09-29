@@ -368,3 +368,22 @@ class MailThread(models.AbstractModel):
         result = super(MailThread, self)._get_message_create_valid_field_names()
         result.update({'pec_type','pec_msg_id'})
         return result
+
+    def _message_post_after_hook(self, message, msg_vals):
+        # Change subtype to note if message is a PEC delivery notification avoiding message looping
+        # between Odoo and PEC service.
+        # Furthermore swap message_id and pec_msg_id to permit correct routing of notification messages.
+        if msg_vals.get("pec_type") != "posta-certificata" and msg_vals.get("message_type") == "email":
+            # edit subtype
+            changed_subtype = self.env.ref("mail.mt_note")
+            message.write({"subtype_id": changed_subtype.id})
+            msg_vals['subtype_id'] = changed_subtype.id
+            # edit message_id and pec_msg_id
+            changed_message_id = "<" + msg_vals['pec_msg_id'] + ">"
+            changed_pec_msg_id = msg_vals['message_id'][1:-1]
+            message.write({"message_id": changed_message_id})
+            msg_vals['message_id'] = changed_message_id
+            message.write({"pec_msg_id": changed_pec_msg_id})
+            msg_vals['pec_msg_id'] = changed_pec_msg_id
+
+        return super(MailThread, self)._message_post_after_hook(message, msg_vals)
