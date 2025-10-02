@@ -373,7 +373,9 @@ class MailThread(models.AbstractModel):
         # Change subtype to note if message is a PEC delivery notification avoiding message looping
         # between Odoo and PEC service.
         # Furthermore swap message_id and pec_msg_id to permit correct routing of notification messages.
-        if msg_vals.get("pec_type") != "posta-certificata" and msg_vals.get("message_type") == "email":
+        if (msg_vals.get("pec_type") and
+                msg_vals.get("pec_type") != "posta-certificata" and
+                msg_vals.get("message_type") == "email"):
             # edit subtype
             changed_subtype = self.env.ref("mail.mt_note")
             message.write({"subtype_id": changed_subtype.id})
