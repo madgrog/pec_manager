@@ -1,6 +1,8 @@
 from odoo import fields, models, api
 from odoo.tools import email_re
 
+from odoo.addons.test_impex.tests.test_load import values
+
 
 class MailComposer(models.TransientModel):
     _inherit = 'mail.compose.message'
@@ -16,18 +18,36 @@ class MailComposer(models.TransientModel):
             res[key]["reply_to"] = self.reply_to
         return res
 
-    @api.model
-    def default_get(self, fields):
-        """
-            If the ticket you are working on is managed as PEC, open the reply wizard
-            preloaded with the custom template.
-            This permits sending replies with the correct sender and "reply-to" value.
-        """
-        res = super(MailComposer, self).default_get(fields)
-        if "model" in res and res['model'] == "helpdesk.ticket":
-            load_pec_template: bool = self.env[res["model"]].sudo().search(
-                [('id', '=', res["res_ids"][1])]).pec_manager
-            if load_pec_template:
-                res['template_id'] = self.env['mail.template'].with_context(lang='en_US').search(
-                [('name', 'like', 'Helpdesk: Reply as PEC')], limit=1)
-        return res
+    # @api.model
+    # def default_get(self, fields):
+    #     """
+    #         If the ticket you are working on is managed as PEC, open the reply wizard
+    #         preloaded with the custom template.
+    #         This permits sending replies with the correct sender and "reply-to" value.
+    #     """
+    #     result = super(MailComposer, self).default_get(fields)
+    #     # if "model" in res and res['model'] == "helpdesk.ticket":
+    #     #     load_pec_template: bool = self.env[res["model"]].sudo().search(
+    #     #         [('id', '=', res["res_ids"][1])]).pec_manager
+    #     #     if load_pec_template:
+    #     #         res['template_id'] = self.env['mail.template'].with_context(lang='en_US').search(
+    #     #         [('name', 'like', 'Helpdesk: Reply as PEC')], limit=1)
+    #     if result.get('model') == "helpdesk.ticket":
+    #         ticket = self.env["helpdesk.ticket"].browse(eval(result.get('res_ids')))
+    #
+    #         if ticket.original_team_id.alias_domain_id.is_pec:
+    #             template = self.env.ref("pec_manager.ticket_reply_as_pec_email_template")
+    #         else:
+    #             template = False
+    #
+    #         if template:
+    #             result["template_id"] = template.id
+    #
+    #             template_values = template.generate_email(ticket.id)
+    #             result.update({
+    #                 "subject": template_values.get("subject"),
+    #                 "body": template_values.get("body"),
+    #                 "email_from": template_values.get("email_from"),
+    #             })
+    #
+    #     return result

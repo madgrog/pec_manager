@@ -9,8 +9,10 @@ class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
     pec_manager = fields.Boolean("Enable PEC management?", default=False)
+    # original_team_id field can be removed
     original_team_id = fields.Many2one('helpdesk.team', string='Original Team id', index=True)
 
+    # Can be deleted, now useless.
     @api.model_create_multi
     def create(self, list_value):
         list_value[0]["original_team_id"] = list_value[0]["team_id"]
