@@ -180,11 +180,6 @@ msgid "Notice Delivery Error"
 msgstr ""
 
 #. module: pec_manager
-#: model:ir.model.fields,field_description:pec_manager.field_helpdesk_ticket__original_team_id
-msgid "Original Team id"
-msgstr "Team ID originario"
-
-#. module: pec_manager
 #: model:ir.model,name:pec_manager.model_mail_mail
 msgid "Outgoing Mails"
 msgstr "Posta in uscita"

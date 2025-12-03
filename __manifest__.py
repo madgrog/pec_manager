@@ -14,6 +14,7 @@
         "data/mail_message_subtype_data.xml",
         "views/fetchmail_views.xml",
         "views/helpdesk_menu_icon_updated.xml",
+        "views/helpdesk_ticket_views.xml",
         "views/mail_alias_domain_views.xml",
     ],
     "application": True,

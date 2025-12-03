@@ -1,0 +1,24 @@
+<odoo>
+
+    <record id="helpdesk_ticket_view_kanban_extended" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.kanban.extended</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//kanban" position="inside">
+                <field name="create_date" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//div[@class='o_kanban_record_body']" position="inside">
+
+                <div class="oe_kanban_details text-muted">
+                    <t t-esc="record.create_date.value"/>
+                </div>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
