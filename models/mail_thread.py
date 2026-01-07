@@ -271,8 +271,8 @@ class MailThread(models.AbstractModel):
                 _logger.info("parent_id: %s", pec_msg_dict['parent_id'])
                 pec_msg_dict['is_internal'] = parent_ids.subtype_id and parent_ids.subtype_id.internal or False
             ###
-            pec_msg_dict['attachments'] += [
-                ('original_email.eml', message.as_string())]
+            # pec_msg_dict['attachments'] += [
+            #     ('original_email.eml', message.as_string())]
         else:
             pec_msg_dict = super(MailThread, self).message_parse(
                 message, save_original=False)
@@ -280,6 +280,9 @@ class MailThread(models.AbstractModel):
             if daticert_dict.get('pec_type') in ('avvenuta-consegna', 'errore-consegna', 'accettazione'):
                 pec_msg_dict['body'], attachs = self._message_extract_payload_receipt(message, save_original=False)
                 pec_msg_dict['references'] = daticert_dict['message_id']
+                pec_msg_dict['attachments'].clear()
+        pec_msg_dict['attachments'] += [
+            ('original_email.eml', message.as_string())]
         pec_msg_dict.update(daticert_dict)
 
         # pec_msg_ids = []

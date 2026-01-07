@@ -51,3 +51,31 @@ class MailComposer(models.TransientModel):
     #             })
     #
     #     return result
+
+    # def action_send_mail(self):
+    #     res = super(MailComposer, self).action_send_mail()
+
+        # hardcode is_pec to True (will fix later)
+        # is_pec = True
+
+        # for composer in self:
+        #     if composer.model == "helpdesk.ticket":
+        #         message = self.env['mail.message'].search([
+        #             ('model', '=', composer.model),
+        #             ('res_id', '=', eval(composer.res_ids)[0]),
+        #         ], order='id desc', limit=1)
+        #
+        #         if message:
+        #             # maybe useless
+        #             message.subtype_id = self.env.ref("pec_manager.mt_external_messages_only").id
+        #
+        #             # remove internal users notifications
+        #             notif_recs = self.env['mail.notification'].search([
+        #                 ('mail_message_id', '=', message.id)
+        #             ])
+        #             internal_notifs = notif_recs.filtered(
+        #                 lambda n: n.res_partner_id.user_ids
+        #             )
+        #             internal_notifs.unlink()
+
+        # return res
