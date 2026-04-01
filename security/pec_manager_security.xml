@@ -9,10 +9,7 @@
     <record id="helpdesk_pec_manager_rule" model="ir.rule">
         <field name="name">Helpdesk PEC Manager</field>
         <field name="model_id" ref="helpdesk.model_helpdesk_team"/>
-        <field name="domain_force">['|',
-                                            ("alias_domain_id.is_pec", "=", True),
-                                            ('use_alias', '=', False)
-                                        ]</field>
+        <field name="domain_force">[("alias_domain_id.is_pec", "=", True)]</field>
         <field name="groups" eval="[(4, ref('group_helpdesk_pec_manager'))]"/>
         <field name="perm_read" eval="1"/>
         <field name="perm_write" eval="0"/>
@@ -23,7 +20,12 @@
     <record id="helpdesk_ticket_pec_manager_rule" model="ir.rule">
         <field name="name">Helpdesk Ticket PEC Manager</field>
         <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
-        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="domain_force">['|',
+                                    '|',
+                                        ('team_id.privacy_visibility', '!=', 'invited_internal'),
+                                        ('team_id.message_partner_ids', 'in', [user.partner_id.id]),
+                                        ('message_partner_ids', 'in', [user.partner_id.id])
+                                    ]</field>
         <field name="groups" eval="[(4, ref('group_helpdesk_pec_manager'))]"/>
         <field name="perm_read" eval="1"/>
         <field name="perm_write" eval="0"/>
@@ -69,7 +71,14 @@
     <record id="helpdesk_ticket_pec_sender_rule" model="ir.rule">
         <field name="name">Helpdesk Ticket PEC Sender</field>
         <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
-        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="domain_force">['|',
+                                    '|',
+                                    '|',
+                                        ("user_id", "=", user.id),
+                                        ('team_id.privacy_visibility', '!=', 'invited_internal'),
+                                        ('team_id.message_partner_ids', 'in', [user.partner_id.id]),
+                                        ('message_partner_ids', 'in', [user.partner_id.id])
+                                    ]</field>
         <field name="groups" eval="[(4, ref('group_helpdesk_pec_sender'))]"/>
         <field name="perm_read" eval="0"/>
         <field name="perm_write" eval="1"/>

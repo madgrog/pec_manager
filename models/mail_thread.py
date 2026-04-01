@@ -67,26 +67,25 @@ class MailThread(models.AbstractModel):
 
     def _get_msg_payload(self, msg, parts=None, num=0):
         """
-        This method recursively checks the message structure and
-            saves the informations (bodies, attachments,
-            pkcs7 signatures, etc.) in a dictionary.
+            This method recursively checks the message structure and
+                saves the informations (bodies, attachments,
+                pkcs7 signatures, etc.) in a dictionary.
 
-        The method parameters are:
+            The method parameters are:
 
-         - msg is the multipart message to process; the first time
-         the method is called it is exactly the Original.eml message,
-         that is: the email as it arrives from the imap server.
-         The method is called recursively when a multipart structure is
-         found, in this case msg is a multipart inside the Original.eml
-         message and the num param is the depth of the multipart inside
-         the Original.eml message.
-         - parts is the dictionary where the informations are saved
-         - num is an integer that refers to the depth
-            of the msg content in the Original.eml message
+             - msg is the multipart message to process; the first time
+             the method is called it is exactly the Original.eml message,
+             that is: the email as it arrives from the imap server.
+             The method is called recursively when a multipart structure is
+             found, in this case msg is a multipart inside the Original.eml
+             message and the num param is the depth of the multipart inside
+             the Original.eml message.
+             - parts is the dictionary where the informations are saved
+             - num is an integer that refers to the depth
+                of the msg content in the Original.eml message
 
-        Some examples of the structure for the different kind of pec messages
-        can be found in the docs folder of this module
-
+            Some examples of the structure for the different kind of pec messages
+            can be found in the docs folder of this module
         """
         if parts is None:
             parts = {}
@@ -341,6 +340,24 @@ class MailThread(models.AbstractModel):
                 res = partner_obj[0]
         return res
 
+    def _notify_get_recipients(self, message, msg_vals, **kwargs):
+        """
+            Filter ticket followers when sending PEC messages: do not send them to internal users.
+            This avoids receiving back useless "accettazione" and "consegna" notifications.
+        """
+        recipients_data = super(MailThread, self)._notify_get_recipients(message, msg_vals, **kwargs)
+
+        if not self.pec_manager:
+            return recipients_data
+        else:
+            filtered_recipients_data = []
+            for recipient in recipients_data:
+                partner = self.env['res.partner'].browse(recipient.get("id"))
+                if partner.user_ids:
+                    continue
+                filtered_recipients_data.append(recipient)
+            return filtered_recipients_data
+
     def _notify_get_recipients_groups(self, message, model_description, msg_vals=None):
         """
             Remove "button access" from PEC replies.
@@ -358,9 +375,11 @@ class MailThread(models.AbstractModel):
         return result
 
     def _message_post_after_hook(self, message, msg_vals):
-        # Change subtype to note if message is a PEC delivery notification avoiding message looping
-        # between Odoo and PEC service.
-        # Furthermore, swap message_id and pec_msg_id to permit correct routing of notification messages.
+        """
+            Change subtype to note if message is a PEC delivery notification avoiding message looping
+            between Odoo and PEC service.
+            Furthermore, swap message_id and pec_msg_id to permit correct routing of notification messages.
+        """
         if (msg_vals.get("pec_type") and
                 msg_vals.get("pec_type") != "posta-certificata" and
                 msg_vals.get("message_type") == "email"):
