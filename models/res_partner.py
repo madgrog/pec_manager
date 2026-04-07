@@ -1,6 +1,6 @@
 from odoo import fields, models, _, api
-from odoo.addons import pec_manager
-from odoo.addons.l10n_cl_edi.models import fetchmail_server
+from odoo.modules import get_module_resource
+import os, base64
 
 
 class Partner(models.Model):
@@ -17,8 +17,35 @@ class Partner(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super().create(vals_list)
+        """
+           When creating new partners processing PEC E-mails, create new sender partners as pec type contact
+           with custom avatar and properly formatted firstname and lastname.
+           Recipients processed as usual.
+        """
+
+        sender_email = self.env.context.get('custom_mail_sender')
         fetchmail_server_id = self.env.context.get('default_fetchmail_server_id')
         if self.env['fetchmail.server'].search([('id', '=', fetchmail_server_id)]).is_pec:
-            res['type'] = 'pec'
-        return res
+
+            for vals in vals_list:
+                current_email = (vals.get('email') or '').lower()
+                if sender_email and current_email == sender_email:
+                    # Path to PEC avatar (now is module icon, could be other in the near future)
+                    img_path = get_module_resource('pec_manager', 'static/description', 'icon.png')
+                    default_image = False
+                    if img_path:
+                        with open(img_path, 'rb') as f:
+                            default_image = base64.b64encode(f.read())
+                    # Set PEC avatar only if it's not provided
+                    if not vals.get('image_1920') and default_image:
+                        vals['image_1920'] = default_image
+                    res = super().create(vals_list)
+                    res['firstname'] = 'PEC'
+                    res['lastname'] = res['email_normalized']
+                    res['name'] = 'PEC '+res['email_normalized']
+                    res['email_formatted'] = '"PEC '+res['email_normalized']+'" <'+res['email_normalized']+'>'
+                    res['type'] = 'pec'
+                    res['company_id'] = ''
+                    return res
+
+        return super().create(vals_list)

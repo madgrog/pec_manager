@@ -2,8 +2,8 @@ import email
 import email.policy
 import logging
 
-from odoo import _, api, models, tools, fields
-from odoo.osv import expression
+from odoo import _, api, models, tools
+from odoo.tools.mail import email_split
 
 import xml.etree.ElementTree as ET
 
@@ -347,7 +347,9 @@ class MailThread(models.AbstractModel):
         """
         recipients_data = super(MailThread, self)._notify_get_recipients(message, msg_vals, **kwargs)
 
-        if not self.pec_manager:
+        if self.env.context.get('active_model') != 'helpdesk.ticket':
+            return recipients_data
+        elif not self.pec_manager:
             return recipients_data
         else:
             filtered_recipients_data = []
@@ -396,3 +398,17 @@ class MailThread(models.AbstractModel):
             msg_vals['pec_msg_id'] = changed_pec_msg_id
 
         return super(MailThread, self)._message_post_after_hook(message, msg_vals)
+
+    def _message_route_process(self, message, message_dict, routes):
+        # get sender e-mail address and forward in context for further processing
+        # (Distinguish sender and recipients creating contacts)
+        sender_emails = email_split(message_dict.get('email_from', ''))
+
+        ctx = dict(self.env.context)
+
+        if sender_emails:
+            ctx['custom_mail_sender'] = sender_emails[0].lower()
+
+        return super(MailThread, self.with_context(ctx))._message_route_process(
+            message, message_dict, routes
+        )

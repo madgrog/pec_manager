@@ -16,6 +16,7 @@
         "views/helpdesk_menu_icon_updated.xml",
         "views/helpdesk_ticket_views.xml",
         "views/mail_alias_domain_views.xml",
+        "views/res_partner_views.xml",
     ],
     "application": True,
     "license": "AGPL-3",

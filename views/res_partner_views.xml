@@ -1,0 +1,16 @@
+<odoo>
+
+    <record id="view_res_partner_filter_pec_contacts" model="ir.ui.view">
+        <field name="name">res.partner.select.extended.pec</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='type_company']" position="after">
+                <filter string="PEC Contacts"
+                        name="pec-contacts"
+                        domain="[('type', '=', 'pec')]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
