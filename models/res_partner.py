@@ -25,11 +25,11 @@ class Partner(models.Model):
 
         sender_email = self.env.context.get('custom_mail_sender')
         fetchmail_server_id = self.env.context.get('default_fetchmail_server_id')
-        if self.env['fetchmail.server'].search([('id', '=', fetchmail_server_id)]).is_pec:
+        if sender_email and self.env['fetchmail.server'].search([('id', '=', fetchmail_server_id)]).is_pec:
 
             for vals in vals_list:
                 current_email = (vals.get('email') or '').lower()
-                if sender_email and current_email == sender_email:
+                if current_email == sender_email:
                     # Path to PEC avatar (now is module icon, could be other in the near future)
                     img_path = get_module_resource('pec_manager', 'static/description', 'icon.png')
                     default_image = False
