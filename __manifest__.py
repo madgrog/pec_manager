@@ -11,7 +11,7 @@
         'security/ir.model.access.csv',
         "data/base_automation_data.xml",
         "data/mail_template_data.xml",
-        "data/mail_message_subtype_data.xml",
+        # "data/mail_message_subtype_data.xml",
         "views/fetchmail_views.xml",
         "views/helpdesk_menu_icon_updated.xml",
         "views/helpdesk_ticket_views.xml",

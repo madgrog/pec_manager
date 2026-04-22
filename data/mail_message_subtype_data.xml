@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><data noupdate="0">
+<odoo>
+    <data noupdate="0">
     <record id="mt_ticket_team" model="mail.message.subtype">
         <field name="name">Team Changed</field>
         <field name="sequence">10</field>
@@ -16,4 +17,5 @@
 <!--        <field name="description">External messages only</field>-->
 <!--    </record>-->
 
-</data></odoo>
+</data>
+</odoo>

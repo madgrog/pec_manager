@@ -12,8 +12,8 @@ class HelpdeskTicket(models.Model):
         res.pec_manager = res.team_id.alias_domain_id.is_pec
         return res
 
-    def _track_subtype(self, init_values):
-        self.ensure_one()
-        if 'team_id' in init_values:
-            return self.env.ref('pec_manager.mt_ticket_team')
-        return super(HelpdeskTicket, self)._track_subtype(init_values)
+    # def _track_subtype(self, init_values):
+    #     self.ensure_one()
+    #     if 'team_id' in init_values:
+    #         return self.env.ref('pec_manager.mt_ticket_team')
+    #     return super(HelpdeskTicket, self)._track_subtype(init_values)
