@@ -42,7 +42,7 @@ class Partner(models.Model):
                     res = super().create(vals_list)
                     res['firstname'] = 'PEC'
                     res['lastname'] = res['email_normalized']
-                    res['name'] = 'PEC '+res['email_normalized']
+                    # res['name'] = 'PEC '+res['email_normalized']
                     res['email_formatted'] = '"PEC '+res['email_normalized']+'" <'+res['email_normalized']+'>'
                     res['type'] = 'pec'
                     res['company_id'] = ''
