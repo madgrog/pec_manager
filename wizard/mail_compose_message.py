@@ -1,7 +1,6 @@
-from odoo import fields, models, api
-from odoo.tools import email_re
+from odoo import models
 
-from odoo.addons.test_impex.tests.test_load import values
+import ast
 
 
 class MailComposer(models.TransientModel):
@@ -14,9 +13,16 @@ class MailComposer(models.TransientModel):
             somewhere. While looking for it, force it injecting in this function.
         """
         res = super(MailComposer, self)._prepare_mail_values(res_ids)
-        for key in res:
-            res[key]["reply_to"] = self.reply_to
-        return res
+        if self.model != "helpdesk.ticket":
+            return res
+        else:
+            res_ids_list = ast.literal_eval(self.res_ids)
+            for res_id in res_ids_list:
+                is_pec: bool = self.env[self.model].sudo().search(
+                    [('id', '=', res_id)]).pec_manager
+                if is_pec:
+                    res[res_id]["reply_to"] = self.reply_to
+            return res
 
     # @api.model
     # def default_get(self, fields):
