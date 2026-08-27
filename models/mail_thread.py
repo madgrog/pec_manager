@@ -346,7 +346,7 @@ class MailThread(models.AbstractModel):
         """
         recipients_data = super(MailThread, self)._notify_get_recipients(message, msg_vals, **kwargs)
 
-        if self.env.context.get('fetchmail_cron_running') or self.env.context.get('active_model') != 'helpdesk.ticket':
+        if self.env.context.get('fetchmail_cron_running') or self.env.context.get('default_model') != 'helpdesk.ticket':
             return recipients_data
         elif not self.pec_manager:
             return recipients_data
